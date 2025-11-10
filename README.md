@@ -1,8 +1,106 @@
-# React + Vite
+🚀 Features
+🧑‍💻 User Features
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔐 Authentication Modal (Login / Register) with auto token storage
+🛒 Add to Cart + Persistent Cart state
+⚡ “Add to Cart” auto-resumes after login (pending cart recovery)
+🧾 Orders Page with Pagination
+👤 Profile Popup on “My Account” (fetched from /api/auth/me)
+🎨 Modern dark UI with Tailwind CSS and Lucide Icons
 
-Currently, two official plugins are available:
+⚙️ Admin Features
+📦 Product Catalogue (Create / Edit / Delete)
+📋 Orders Management (Paginated)
+👥 Users Management (Paginated)
+📊 Dashboard Overview: users, products, revenue stats
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+🔐 JWT authentication (Admin & User protected routes)
+
+Responsive and minimal design using Tailwind
+
+🧰 Tech Stack
+Layer	Technology
+Frontend Framework	React 18 + TypeScript
+UI Styling	Tailwind CSS
+Icons	Lucide React
+HTTP Client	Axios
+Routing	React Router DOM v6
+Alerts	SweetAlert2
+Build Tool	Vite
+Pagination	Custom reusable <Pagination /> component
+
+
+⚡ Setup Instructions
+1️⃣ Clone the Repository
+git clone https://github.com/SohamDwivedi/spaisingAssignmentFrontend.git
+cd spaisingAssignmentFrontend
+
+2️⃣ Install Dependencies
+npm install
+npm run tailwind:init
+
+
+3️⃣ Configure Environment
+
+Create a .env file in the root of the project:
+
+VITE_API_BASE_URL=http://127.0.0.1:8000/api
+
+
+(Backend must be running on Laravel 11 API.)
+
+4️⃣ Run the Development Server
+npm run dev
+
+For Testing run : npm test
+
+Default Output without any other test addition:
+
+PASS src/tests/productSlice.test.ts
+PASS src/hooks/useFetchProducts.test.tsx
+Test Suites: 2 passed, 2 total
+Tests:       5 passed, 5 total
+
+Default runs on:
+👉 http://localhost:5173
+
+🔑 Authentication Flow
+
+On login/register → token and role are stored in localStorage.
+
+If the user tried “Add to Cart” before login, it auto-adds after login (pendingAddToCart key).
+
+Navbar dynamically updates the cart count using a global window.updateCartCount() function.
+
+🧾 Orders + Pagination
+
+Both user and admin order pages support Laravel-style pagination (meta object).
+
+Pagination controls: Prev | Page x of y | Next
+
+User orders include modal view for detailed items.
+
+🧑‍💼 Admin Dashboard
+
+Tabs: Overview, Products, Orders, Users
+
+Pagination for each dataset.
+
+CRUD for Products with SweetAlert confirmations.
+
+Automatic session expiry logout on invalid token.
+
+🧩 UI Enhancements
+
+Profile popup under “My Account”
+
+Consumes: GET /api/auth/me
+
+Displays: Name, Email, Role, Created Date
+
+Includes quick logout
+
+Aligned pagination + back button on Orders page
+
+Responsive and minimal dark theme
