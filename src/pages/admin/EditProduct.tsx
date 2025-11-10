@@ -53,7 +53,6 @@ const EditProduct = () => {
 
   const handleAddImage = () => {
     if (!newImage.trim()) {
-      // highlight + focus when empty
       setHighlightInput(true);
       inputRef.current?.focus();
       setTimeout(() => setHighlightInput(false), 1500);
@@ -190,7 +189,7 @@ const EditProduct = () => {
           </div>
         </div>
 
-        {/* RIGHT: Product Images + Update Button */}
+        {/* Product Images */}
         <div className="flex flex-col justify-between h-full">
           <div>
             <label className="block text-gray-300 mb-3 text-lg font-semibold">

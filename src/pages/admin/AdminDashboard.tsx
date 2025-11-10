@@ -278,7 +278,6 @@ const AdminDashboard = () => {
                     </li>
                 ))}
                 </ul>
-                {/* ✅ Pagination same as Products */}
                 <Pagination meta={meta} onPageChange={handlePageChange} />
             </>
             )}

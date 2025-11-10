@@ -22,7 +22,7 @@ const initialState: AuthState = {
   error: null,
 };
 
-// 🔑 Login
+// Login
 export const loginUser = createAsyncThunk(
   "auth/loginUser",
   async (credentials: { email: string; password: string }) => {
@@ -31,7 +31,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// 🔐 Get current user profile using the existing token
+// Get current user profile using the existing token
 export const fetchUser = createAsyncThunk(
   "auth/fetchUser",
   async (_, { getState }) => {

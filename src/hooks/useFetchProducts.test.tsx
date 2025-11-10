@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
 import { useFetchProducts } from "./useFetchProducts";
 
-// ✅ FIX: Import redux-thunk correctly (works in both ESM & CJS)
 const thunk = require("redux-thunk").default || require("redux-thunk").thunk || require("redux-thunk");
 const mockStore = configureMockStore([thunk]);
 

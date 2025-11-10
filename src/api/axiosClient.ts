@@ -23,13 +23,12 @@ axiosClient.interceptors.response.use(
     const token = localStorage.getItem("token");
     const requestUrl = error.config?.url || "";
 
-    // 🟣 Skip handling for public/auth routes
+    // Skip handling for public/auth routes
     const isPublicOrAuthRoute =requestUrl.includes("/auth/") 
       || requestUrl.includes("/public/") 
       || requestUrl.includes("/register")
       || requestUrl.includes("/login");
 
-    console.log(isPublicOrAuthRoute,'---url--',requestUrl);
     // Only trigger session-expired flow for protected endpoints with a token
     if ((status === 401 || message === "Unauthorized or invalid token") && token && !isPublicOrAuthRoute) {
       // Clear invalid token
