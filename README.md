@@ -72,8 +72,11 @@ Pagination	Custom reusable <Pagination /> component
     Default Output without any other test addition:
 
     PASS src/tests/productSlice.test.ts
+
     PASS src/hooks/useFetchProducts.test.tsx
+    
     Test Suites: 2 passed, 2 total
+    
     Tests:       5 passed, 5 total
 
 Default runs on:
