@@ -12,7 +12,7 @@ const Cart = () => {
 
   const fetchCart = async (check:boolean=false) => {
     try {
-      const res = await axiosClient.get("http://localhost:8000/api/cart");
+      const res = await axiosClient.get("/cart");
       setCart(res.data.cart || []);
     } catch {
       setCart([]);
@@ -29,7 +29,7 @@ const Cart = () => {
     setLoading(true);
     try {
       await axiosClient.patch(
-        `http://localhost:8000/api/cart/items/${productId}`,
+        `/cart/items/${productId}`,
         { quantity }
       );
       
@@ -44,7 +44,7 @@ const Cart = () => {
   const removeItem = async (productId: number) => {
     setLoading(true);
     try {
-      await axiosClient.delete(`http://localhost:8000/api/cart/items/${productId}`);
+      await axiosClient.delete(`/cart/items/${productId}`);
       fetchCart();
       if (window.updateCartCount) window.updateCartCount();
     } catch {
@@ -103,7 +103,7 @@ const Cart = () => {
   const handleCheckout = async () => {
     setLoading(true);
     try {
-      const res = await axiosClient.post("http://localhost:8000/api/checkout");
+      const res = await axiosClient.post("/checkout");
       Swal.fire({
         icon: "success",
         title: "Checkout Successful!",

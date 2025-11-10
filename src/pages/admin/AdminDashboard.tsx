@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Pagination from "../../components/Pagination";
 import { useNavigate } from "react-router-dom";
 import { Edit3, Trash2 } from "lucide-react";
