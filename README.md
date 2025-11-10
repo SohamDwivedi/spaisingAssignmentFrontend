@@ -112,7 +112,9 @@ Responsive and minimal dark theme
 🧑‍💻 Developer Info
 
 Author: Soham Dwivedi.
+
 Role: Full Stack Web Developer
+
 Experience: 5.8+ years
 
 
