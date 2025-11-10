@@ -46,17 +46,20 @@ Pagination	Custom reusable <Pagination /> component
 ⚡ Setup Instructions
 1. Clone the Repository
 
-    git clone https://github.com/SohamDwivedi/spaisingAssignmentFrontend.git
-    cd spaisingAssignmentFrontend
+        git clone https://github.com/SohamDwivedi/spaisingAssignmentFrontend.git
+    Then
+    
+        cd spaisingAssignmentFrontend
 
 2. Install Dependencies
 
-    npm install
-    npm run tailwind:init
+        npm install
+    Then
+        npm run tailwind:init
 
 3. Run the Development Server
 
-    npm run dev
+        npm run dev
 
     NOTE:
         Backend must be running on Laravel 11 API. http://localhost:8000/api 
@@ -64,7 +67,7 @@ Pagination	Custom reusable <Pagination /> component
 
 4. For Testing run : 
     
-    npm test
+        npm test
 
     Default Output without any other test addition:
 
@@ -76,25 +79,25 @@ Pagination	Custom reusable <Pagination /> component
 Default runs on:
 👉 http://localhost:5173
 
-🔑 Authentication Flow
+# 🔑 Authentication Flow
 
-On login/register → token and role are stored in localStorage.
+    On login/register → token and role are stored in localStorage.
 
-If the user tried “Add to Cart” before login, it auto-adds after login (pendingAddToCart key).
+    If the user tried “Add to Cart” before login, it auto-adds after login (pendingAddToCart key).
 
-Navbar dynamically updates the cart count using a global window.updateCartCount() function.
+    Navbar dynamically updates the cart count using a global window.updateCartCount() function.
 
-🧾 Orders + Pagination
+# 🧾 Orders + Pagination
 
-Both user and admin order pages support Laravel-style pagination (meta object).
+    Both user and admin order pages support Laravel-style pagination (meta object).
 
-Pagination controls: Prev | Page x of y | Next
+    Pagination controls: Prev | Page x of y | Next
 
-User orders include modal view for detailed items.
+    User orders include modal view for detailed items.
 
-🧑‍💼 Admin Dashboard
+# 🧑‍💼 Admin Dashboard
 
-Tabs: Overview, Products, Orders, Users
+    Tabs: Overview, Products, Orders, Users
 
 Pagination for each dataset.
 
@@ -102,27 +105,17 @@ CRUD for Products with SweetAlert confirmations.
 
 Automatic session expiry logout on invalid token.
 
-🧩 UI Enhancements
-
-Profile popup under “My Account”
-
-Consumes: GET /api/auth/me
-
-Displays: Name, Email, Role, Created Date
-
-Includes quick logout
-
-Aligned pagination + back button on Orders page
+Animation of product card 
 
 Responsive and minimal dark theme
 
 🧑‍💻 Developer Info
 
-Author: Soham
+Author: Soham Dwivedi.
 Role: Full Stack Web Developer
 Experience: 5.8+ years
 
 
 📄 License
 
-This project was created for demo purpose of skill evaluation.
+This project was created by Soham Dwivedi for demo purpose of skill evaluation.
