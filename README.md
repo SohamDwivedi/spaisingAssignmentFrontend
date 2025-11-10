@@ -63,9 +63,9 @@ Pagination	Custom reusable <Pagination /> component
 
     NOTE:
         
-        Backend must be running on Laravel 11 API. http://localhost:8000/api 
+    Backend must be running on Laravel 11 API. http://localhost:8000/api 
 
-        For modification of backend route use src/api/axiosClient
+    For modification of backend route use src/api/axiosClient
 
 4. For Testing run : 
     
