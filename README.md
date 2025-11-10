@@ -62,7 +62,9 @@ Pagination	Custom reusable <Pagination /> component
         npm run dev
 
     NOTE:
+        
         Backend must be running on Laravel 11 API. http://localhost:8000/api 
+
         For modification of backend route use src/api/axiosClient
 
 4. For Testing run : 
