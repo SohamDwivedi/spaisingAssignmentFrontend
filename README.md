@@ -126,8 +126,7 @@ Animation of product card
 
 Responsive and minimal dark theme
 
-
-🧑‍💻 Developer Info
+# 🧑‍💻 Developer Info
 
 Author: Soham Dwivedi.
 
@@ -136,6 +135,6 @@ Role: Full Stack Web Developer
 Experience: 5.8+ years
 
 
-📄 License
+# 📄 License
 
 This project was created by Soham Dwivedi for demo purpose of skill evaluation.
