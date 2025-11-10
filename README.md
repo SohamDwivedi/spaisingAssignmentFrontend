@@ -33,20 +33,30 @@ Responsive and minimal design using Tailwind
 🧰 Tech Stack
 
 Layer	Technology
+
 Frontend Framework	React 18 + TypeScript
+
 UI Styling	Tailwind CSS
+
 Icons	Lucide React
+
 HTTP Client	Axios
+
 Routing	React Router DOM v6
+
 Alerts	SweetAlert2
+
 Build Tool	Vite
+
 Pagination	Custom reusable <Pagination /> component
 
+Required : Node.js , Xampp (for local setup of mysql)
 
 ⚡ Setup Instructions
 1. Clone the Repository
 
         git clone https://github.com/SohamDwivedi/spaisingAssignmentFrontend.git
+    
     Then
     
         cd spaisingAssignmentFrontend
@@ -54,7 +64,9 @@ Pagination	Custom reusable <Pagination /> component
 2. Install Dependencies
 
         npm install
+    
     Then
+    
         npm run tailwind:init
 
 3. Run the Development Server
@@ -86,23 +98,23 @@ Default runs on:
 
 # 🔑 Authentication Flow
 
-    On login/register → token and role are stored in localStorage.
+On login/register → token and role are stored in localStorage.
 
-    If the user tried “Add to Cart” before login, it auto-adds after login (pendingAddToCart key).
+If the user tried “Add to Cart” before login, it auto-adds after login (pendingAddToCart key).
 
-    Navbar dynamically updates the cart count using a global window.updateCartCount() function.
+Navbar dynamically updates the cart count using a global window.updateCartCount() function.
 
 # 🧾 Orders + Pagination
 
-    Both user and admin order pages support Laravel-style pagination (meta object).
+Both user and admin order pages support Laravel-style pagination (meta object).
 
-    Pagination controls: Prev | Page x of y | Next
+Pagination controls: Prev | Page x of y | Next
 
-    User orders include modal view for detailed items.
+User orders include modal view for detailed items.
 
 # 🧑‍💼 Admin Dashboard
 
-    Tabs: Overview, Products, Orders, Users
+Tabs: Overview, Products, Orders, Users
 
 Pagination for each dataset.
 
@@ -113,6 +125,7 @@ Automatic session expiry logout on invalid token.
 Animation of product card 
 
 Responsive and minimal dark theme
+
 
 🧑‍💻 Developer Info
 
