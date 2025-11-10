@@ -1,0 +1,244 @@
+import React, { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axiosClient from "../../api/axiosClient";
+import Swal from "sweetalert2";
+import { Plus, Trash2 } from "lucide-react";
+import AuthModal from "../../components/AuthModal";
+
+const CreateProduct = () => {
+  const navigate = useNavigate();
+  const [form, setForm] = useState({
+    name: "",
+    description: "",
+    price: "",
+    stock: "",
+    images: [] as string[],
+  });
+  const [newImage, setNewImage] = useState("");
+  const [highlightInput, setHighlightInput] = useState(false);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  const handleAddImage = () => {
+    if (!newImage.trim()) {
+      setHighlightInput(true);
+      inputRef.current?.focus();
+      setTimeout(() => setHighlightInput(false), 500);
+      return;
+    }
+    setForm((prev) => ({
+      ...prev,
+      images: [...prev.images, newImage.trim()],
+    }));
+    setNewImage("");
+  };
+
+  const handleRemoveImage = (index: number) => {
+    setForm((prev) => ({
+      ...prev,
+      images: prev.images.filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!form.name || !form.price || !form.stock) {
+      Swal.fire({
+        icon: "warning",
+        title: "Missing fields",
+        text: "Please fill all required fields.",
+        background: "#1f1f1f",
+        color: "#fff",
+      });
+      return;
+    }
+
+    if (form.images.length === 0) {
+      Swal.fire({
+        icon: "warning",
+        title: "At least one image is required",
+        text: "Please add at least one image link.",
+        background: "#1f1f1f",
+        color: "#fff",
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+      const payload = { ...form, images: JSON.stringify(form.images) };
+      const res = await axiosClient.post("/admin/products", payload);
+      if (res) {
+        Swal.fire({
+          icon: "success",
+          title: "Product created successfully!",
+          timer: 1500,
+          showConfirmButton: false,
+        });
+        navigate("/admin", { state: { activeTab: "products" } });
+      }
+    } catch (err: any) {
+      console.error("Create failed:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Error creating product",
+        text: err.response?.data?.message || "Something went wrong.",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <main className="min-h-screen bg-[#0f0f10] text-white p-6 md:p-10">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold text-purple-400">Add New Product</h1>
+        <button
+          onClick={() =>
+            navigate("/admin", { state: { activeTab: "products" } })
+          }
+          className="bg-gray-700 hover:bg-gray-600 text-gray-200 px-4 py-2 rounded-md"
+        >
+          Back
+        </button>
+      </div>
+
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gray-900 p-8 rounded-lg shadow-lg"
+      >
+        {/* LEFT */}
+        <div className="space-y-6">
+          <div>
+            <label className="block text-gray-300 mb-2">Product Name</label>
+            <input
+              type="text"
+              value={form.name}
+              onChange={(e) => setForm({ ...form, name: e.target.value })}
+              required
+              className="w-full bg-gray-800 text-white px-4 py-2 rounded-md border border-gray-700 focus:border-purple-500 outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-300 mb-2">Description</label>
+            <textarea
+              value={form.description}
+              onChange={(e) =>
+                setForm({ ...form, description: e.target.value })
+              }
+              rows={5}
+              className="w-full bg-gray-800 text-white px-4 py-2 rounded-md border border-gray-700 focus:border-purple-500 outline-none resize-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-300 mb-2">Price</label>
+            <input
+              type="number"
+              value={form.price}
+              onChange={(e) => setForm({ ...form, price: e.target.value })}
+              required
+              min="0"
+              className="w-full bg-gray-800 text-white px-4 py-2 rounded-md border border-gray-700 focus:border-purple-500 outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-gray-300 mb-2">Stock</label>
+            <input
+              type="number"
+              value={form.stock}
+              onChange={(e) => setForm({ ...form, stock: e.target.value })}
+              required
+              min="0"
+              className="w-full bg-gray-800 text-white px-4 py-2 rounded-md border border-gray-700 focus:border-purple-500 outline-none"
+            />
+          </div>
+        </div>
+
+        {/* RIGHT */}
+        <div className="flex flex-col justify-between h-full">
+          <div>
+            <label className="block text-gray-300 mb-3 text-lg font-semibold">
+              Product Images
+            </label>
+
+            <div className="flex gap-3 mb-4">
+              <input
+                ref={inputRef}
+                type="text"
+                placeholder="Enter image URL then click +"
+                value={newImage}
+                onChange={(e) => setNewImage(e.target.value)}
+                className={`flex-1 bg-gray-800 text-white px-4 py-2 rounded-md border ${
+                  highlightInput
+                    ? "border-red-500 animate-pulse"
+                    : "border-gray-700"
+                } focus:border-purple-500 outline-none transition-all`}
+              />
+              <button
+                type="button"
+                onClick={handleAddImage}
+                className="bg-purple-600 hover:bg-purple-700 px-3 rounded-md flex items-center justify-center"
+                title="Add image"
+              >
+                <Plus size={18} />
+              </button>
+            </div>
+
+            {form.images.length > 0 ? (
+              <div className="space-y-3 max-h-[360px] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900">
+                {form.images.map((img, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between bg-gray-800 border border-gray-700 rounded-md px-4 py-2 hover:border-purple-500 transition"
+                  >
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={img}
+                        alt={`img-${index}`}
+                        className="w-14 h-14 object-cover rounded-md border border-gray-700"
+                      />
+                      <span className="text-sm text-gray-300 truncate max-w-[240px] md:max-w-[320px]">
+                        {img}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => handleRemoveImage(index)}
+                      className="text-red-400 hover:text-red-500 transition ml-3"
+                      title="Remove"
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <p className="text-gray-400 text-sm mt-2">
+                No images added yet. Please add at least one.
+              </p>
+            )}
+          </div>
+
+          <div className="mt-6">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold px-6 py-3 rounded-md text-lg transition-all disabled:opacity-70"
+            >
+              {loading ? "Creating..." : "Create Product"}
+            </button>
+          </div>
+        </div>
+      </form>
+
+      {showAuthModal && <AuthModal onClose={() => setShowAuthModal(false)} />}
+    </main>
+  );
+};
+
+export default CreateProduct;
